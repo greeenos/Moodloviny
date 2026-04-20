@@ -1,0 +1,285 @@
+@font-face {
+  font-family: Segeo UI;
+  src: url(../../fonts/Segoe\ UI.ttf);
+}
+
+:root {
+  --bg-color: #121212;
+  --color: #fff;
+  --btn-color: #7f39fb;
+  --popup-width: 25rem;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Segeo UI', sans-serif;
+  color: var(--color);
+}
+
+html,
+body {
+  width: var(--popup-width);
+  min-width: var(--popup-width);
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.9rem;
+  gap: 0.55rem;
+  text-align: center;
+  width: 100%;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+  width: 100%;
+}
+
+img {
+  width: 3.25rem;
+}
+
+.header-line {
+  margin-bottom: 0.2rem;
+}
+
+a {
+  color: var(--btn-color);
+  margin: 0;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.center-y {
+  align-items: center;
+}
+
+.line .textLabel {
+  width: 5.4rem;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  line-height: 1.15;
+}
+
+.line .textLabel .required {
+  color: var(--btn-color);
+  font-weight: bold;
+}
+
+.line input[type='text'],
+.line input[type='password'],
+.line input[type='number'],
+.line select {
+  flex: 1 1;
+  border: thin solid var(--color);
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.2rem;
+  outline-color: transparent;
+  background-color: transparent;
+  font-size: 0.88rem;
+}
+
+.line option {
+  color: #000;
+}
+
+.line input[type='checkbox'] {
+  accent-color: var(--btn-color);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 0.25rem;
+}
+
+.save {
+  border: none;
+  background-color: var(--btn-color);
+  padding: 0.55rem 1.15rem;
+  margin-top: 0;
+  cursor: pointer;
+  border-radius: 0.35rem;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.secondary {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  border-radius: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.mt {
+  margin-top: 0.15rem;
+}
+
+.not-selected {
+  opacity: 0.4;
+}
+
+#mode li {
+  list-style: none;
+  flex-grow: 1;
+}
+
+#mode {
+  flex-wrap: wrap;
+}
+
+#mode button {
+  background-color: var(--btn-color);
+  border: none;
+  text-align: center;
+  padding: 0.42rem 0.65rem;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+#message {
+  display: none;
+  margin-top: -0.1rem;
+  margin-bottom: -0.15rem;
+}
+
+#reloadModel {
+  cursor: pointer;
+}
+
+.model-recommendations {
+  color: #9fd8ff;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: left;
+  width: 100%;
+  margin-top: -0.1rem;
+}
+
+.model-loading {
+  min-height: 0.9rem;
+  width: 100%;
+  text-align: left;
+  color: #ffc857;
+  font-size: 0.74rem;
+  line-height: 1.1;
+  margin-top: -0.15rem;
+}
+
+.actions {
+  gap: 0.55rem;
+}
+
+.actions .save,
+.actions .secondary {
+  flex: 1 1 0;
+}
+
+.actions .save {
+  max-width: 9rem;
+}
+
+.actions .secondary {
+  max-width: 8rem;
+}
+
+.line.center:last-of-type {
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.options-grid {
+  gap: 1rem;
+}
+
+.title h1 {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+#switch-settings {
+  font-size: 1.05rem;
+}
+
+.options-grid label {
+  line-height: 1.15;
+}
+
+#donate-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.4rem 0.75rem;
+  background: linear-gradient(90deg, #3a1a7a, #5a2db5);
+  border-bottom: 1px solid #7f39fb;
+  font-size: 0.78rem;
+  animation: slideDown 0.35s ease;
+}
+
+#donate-banner a {
+  color: #d4b0ff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#close-donate {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.1rem;
+  flex-shrink: 0;
+}
+
+#close-donate:hover {
+  color: #fff;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}

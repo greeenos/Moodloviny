@@ -1,0 +1,14 @@
+Moodloviny: AI asistent pro Moodle
+
+Moodloviny je praktické Chrome rozšíření, které pomáhá s Moodle testy pomocí moderních AI poskytovatelů.
+
+Hlavní funkce:
+- Více poskytovatelů: OpenAI, Gemini, Claude, OpenRouter
+- Rychlé přepínání režimů: automatické vyplnění, schránka, otázka/odpověď
+- Chytré doporučení modelů podle poskytovatele
+- Volitelný vstup obrázků u podporovaných modelů
+- Pokročilé volby pro aktivační kód, vlastní base URL a limit tokenů
+
+Moodloviny je navržené tak, aby se snadno nastavilo a rychle používalo.
+
+Repozitář: https://github.com/greeenos/Moodloviny

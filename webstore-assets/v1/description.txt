@@ -1,0 +1,14 @@
+Moodloviny je Chrome rozšíření, které pomáhá s Moodle testy pomocí AI.
+
+Podporuje OpenAI, Google Gemini, Anthropic Claude a OpenRouter.
+
+Hlavní funkce:
+- Automatické vyplnění odpovědi
+- Kopírování do schránky
+- Režim otázka/odpověď
+- Výběr modelu podle poskytovatele
+- Podpora obrázků u vybraných modelů
+
+Podporované typy otázek zahrnují radio tlačítka, checkboxy, výběrové seznamy, textová pole, číselná pole a editor pro delší text.
+
+Repozitář: https://github.com/greeenos/Moodloviny

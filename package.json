@@ -1,0 +1,50 @@
+{
+  "name": "moodloviny",
+  "version": "1.0.0",
+  "description": "Rozšíření pro Chrome, které vám pomůže řešit Moodle testy s pomocí AI (OpenAI, Google Gemini, Anthropic Claude, OpenRouter).",
+  "scripts": {
+    "build": "npm run prettier && npm run lint && npm run fastBuild",
+    "fastBuild": "rollup -c",
+    "lint": "eslint . --ext .ts",
+    "prettier": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greeenos/Moodloviny.git"
+  },
+  "keywords": [
+    "moodle",
+    "moodle-quiz",
+    "extension-chrome",
+    "openai",
+    "gemini",
+    "claude",
+    "openrouter",
+    "ai-assistance"
+  ],
+  "author": "Moodloviny contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greeenos/Moodloviny/issues"
+  },
+  "homepage": "https://github.com/greeenos/Moodloviny#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/chrome": "^0.1.1",
+    "@types/node": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "openai": "^5.23.2",
+    "prettier": "^3.6.2",
+    "rollup": "^4.46.2",
+    "rollup-plugin-ts": "^3.2.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
+  }
+}

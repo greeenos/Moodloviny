@@ -1,0 +1,68 @@
+import type Config from '../../types/config';
+import type GPTAnswer from '../../types/gpt-answer';
+import Logs from 'background/utils/logs';
+import normalizeText from 'background/utils/normalize-text';
+import { pickBestReponse } from 'background/utils/pick-best-response';
+import { applyWithOptionalHover, fillChecked } from 'background/utils/form-actions';
+
+/**
+ * Handle input checkbox elements
+ * @param config
+ * @param inputList
+ * @param gptAnswer
+ */
+function handleCheckbox(
+  config: Config,
+  inputList: NodeListOf<HTMLElement>,
+  gptAnswer: GPTAnswer
+): boolean {
+  const firstInput = inputList?.[0] as HTMLInputElement;
+
+  // Handle the case the input is not a checkbox
+  if (!firstInput || firstInput.type !== 'checkbox') {
+    return false;
+  }
+
+  const corrects = gptAnswer.normalizedResponse.split('\n');
+
+  const possibleAnswers = Array.from(inputList)
+    .map(inp => ({
+      element: inp as HTMLInputElement,
+      value: normalizeText(inp?.parentElement?.textContent ?? '')
+    }))
+    .filter(obj => obj.value !== '');
+
+  // Find the best answers elements
+  const correctElements: Set<HTMLInputElement> = new Set();
+  for (const correct of corrects) {
+    const bestAnswer = pickBestReponse(correct, possibleAnswers);
+
+    if (config.logs && bestAnswer.value) {
+      Logs.bestAnswer(bestAnswer.value, bestAnswer.similarity);
+    }
+
+    correctElements.add(bestAnswer.element as HTMLInputElement);
+  }
+
+  // Check if it should be checked or not
+  for (const element of possibleAnswers.map(e => e.element)) {
+    const needAction =
+      (element.checked && !correctElements.has(element)) ||
+      (!element.checked && correctElements.has(element));
+
+    if (!needAction) continue;
+
+    const hoverTarget = (element.closest('label') || element.parentElement || element) as HTMLElement;
+    const targetCheckedState = correctElements.has(element);
+
+    applyWithOptionalHover({
+      enableHover: config.mouseover,
+      hoverTarget,
+      apply: () => fillChecked(element, targetCheckedState)
+    });
+  }
+
+  return true;
+}
+
+export default handleCheckbox;

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "src",
+    "module": "esnext",
+    "target": "ES6",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "extension",
+    "types": ["node", "chrome"],
+    "typeRoots": ["node_modules/@types"],
+    "strictBindCallApply": true
+  },
+  "include": ["src/**/*"]
+}

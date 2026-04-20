@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodloviny</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="./popup.js" defer></script>
+
+    <link rel="icon" type="image/png" href="../icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div id="donate-banner">
+      <span>☕ Líbí se ti rozšíření? <a href="https://polygonscan.com/address/0x7E7d37CB49e34C62A4F299B74e784FfBEeb3050e" target="_blank" rel="noopener noreferrer">Podpořit projekt</a></span>
+      <button id="close-donate" aria-label="Zavřít">×</button>
+    </div>
+    <main>
+      <div class="line center header-line">
+        <img src="../icon.png" alt="Moodloviny logo" />
+        <div class="col center title">
+          <h1>Moodloviny</h1>
+        </div>
+      </div>
+
+      <!-- NASTAVENÍ -->
+      <div class="settings" id="settings">
+        <div class="line center">
+          <label for="provider" class="textLabel">Poskytovatel<span class="required">*</span>:</label>
+          <select id="provider">
+            <option value="openai">OpenAI (ChatGPT, GPT-4)</option>
+            <option value="gemini">Google Gemini (zdarma)</option>
+            <option value="claude">Anthropic Claude</option>
+            <option value="openrouter">OpenRouter (více modelů)</option>
+          </select>
+        </div>
+        <div class="line center">
+          <label for="apiKey" class="textLabel">API klíč<span class="required">*</span>:</label>
+          <input id="apiKey" type="password" placeholder="Vložte váš API klíč" />
+        </div>
+        <div class="line center">
+          <label for="model" class="textLabel">Model<span class="required">*</span>:</label>
+          <select id="model"></select>
+        </div>
+        <p id="model-loading" class="model-loading" aria-live="polite"></p>
+        <p id="model-recommendations" class="model-recommendations"></p>
+      </div>
+
+      <!-- POKROČILÁ NASTAVENÍ -->
+      <div class="settings" id="advanced-settings" style="display: none">
+        <div class="line center">
+          <label for="code" class="textLabel">Kód aktivace:</label>
+          <input id="code" type="text" placeholder="Např. 'qq' - stiskněte na Moodle" />
+        </div>
+        <div class="line center">
+          <label for="baseURL" class="textLabel">Endpoint:</label>
+          <input id="baseURL" type="text" />
+        </div>
+        <div class="line center">
+          <label for="maxTokens" class="textLabel">Max tokeny:</label>
+          <input id="maxTokens" type="number" />
+        </div>
+      </div>
+
+      <!-- PŘEPÍNAČ NASTAVENÍ -->
+      <div class="line center mt">
+        <a id="switch-settings" href="#">Pokročilá nastavení</a>
+      </div>
+
+      <div class="line center-y mt">
+        <i class="fa-solid fa-robot"></i>
+        <p>Režim:</p>
+      </div>
+      <div class="line">
+        <ul id="mode" class="line center">
+          <li><button value="autocomplete">Automatické vyplnění</button></li>
+          <li>
+            <button value="clipboard" class="not-selected">Schránka</button>
+          </li>
+          <li>
+            <button value="question-to-answer" class="not-selected">Otázka↔Odpověď</button>
+          </li>
+        </ul>
+      </div>
+      <div class="line mt center-y">
+        <i class="fa-solid fa-gear"></i>
+        <p>Možnosti:</p>
+      </div>
+      <div class="line center options-grid">
+        <div class="col">
+          <div class="line">
+            <input id="logs" type="checkbox" />
+            <label for="logs">Konzole logů</label>
+          </div>
+          <div class="line">
+            <input id="title" type="checkbox" checked />
+            <label for="title">Indikace v nadpisu</label>
+          </div>
+          <div class="line">
+            <input id="cursor" type="checkbox" checked />
+            <label for="cursor">Indikace kurzoru</label>
+          </div>
+          <div class="line">
+            <input id="timeout" type="checkbox" checked />
+            <label for="timeout">Timeout požadavku</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="line">
+            <input id="typing" type="checkbox" />
+            <label for="typing">Efekt psaní</label>
+          </div>
+          <div class="line">
+            <input id="mouseover" type="checkbox" />
+            <label for="mouseover">Efekt mouseover</label>
+          </div>
+          <div class="line">
+            <input id="infinite" type="checkbox" />
+            <label for="infinite">Neomezené pokusy</label>
+          </div>
+          <div class="line">
+            <input id="history" type="checkbox" />
+            <label for="history">Uložit historii</label>
+          </div>
+          <!-- This option is only showed if the current version of the model support it -->
+          <div class="line" id="includeImages-line" style="display: none">
+            <input id="includeImages" type="checkbox" />
+            <label for="includeImages">Zahrnout obrázky</label>
+          </div>
+        </div>
+      </div>
+      <p id="message">{Zpráva}</p>
+      <div class="line center actions">
+        <button class="save">Uložit nastavení</button>
+        <button id="check-model" type="button" class="secondary">Test připojení</button>
+      </div>
+      <div class="line center">
+        <a
+          href="https://polygonscan.com/address/0x7E7d37CB49e34C62A4F299B74e784FfBEeb3050e"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ☕ Podpořit
+        </a>
+        <
+          href="https://github.com/greeenos/Moodloviny#readme"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dokumentace
+        </a>
+
+        <a
+          href="https://github.com/greeenos/Moodloviny/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nahlásit problém
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

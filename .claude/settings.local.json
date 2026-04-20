@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/az/Desktop/Moodloviny/node_modules/.bin/rollup -c)"
+    ]
+  }
+}
