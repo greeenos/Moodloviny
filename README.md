@@ -28,12 +28,12 @@ Jednoduché rozšíření pro **Chrome / Brave / Opera**, které pomáhá s otá
 
 Podporuje 4 poskytovatele:
 
-| Poskytovatel | Poznámka |
-|---|---|
-| OpenAI | Placené |
-| Google Gemini | Zdarma pro studenty |
-| Anthropic Claude | Placené |
-| OpenRouter | Zdarma i placené modely |
+| Poskytovatel     | Poznámka                | Status                                      |
+| ---------------- | ----------------------- | ------------------------------------------- |
+| OpenAI           | Placené                 | ❌ Aktuálně nefunkční (pracuje se na opravě) |
+| Google Gemini    | Zdarma pro studenty     | ✅ 100% funkční                              |
+| Anthropic Claude | Placené                 | ❌ Aktuálně nefunkční (pracuje se na opravě) |
+| OpenRouter       | Zdarma i placené modely | ✅ 100% funkční                              |
 
 ---
 
